@@ -13,7 +13,7 @@ namespace TestSecApplication1
             // Configure Kestrel to listen on the public IP and port
             builder.WebHost.ConfigureKestrel(options =>
             {
-                options.Listen(IPAddress.Parse(publicIp), 8080); // Replace 8080 with your desired port
+                options.Listen(IPAddress.Parse(publicIp), 5000); // Replace 8080 with your desired port
             });
 
             // Add services to the container.
