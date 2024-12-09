@@ -1,0 +1,6 @@
+@TestSecApplication1_HostAddress = http://localhost:5237
+
+GET {{TestSecApplication1_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
