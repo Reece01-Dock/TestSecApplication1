@@ -1,24 +1,32 @@
-#See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
+# Base image for running the application
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-USER app
 WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
 
+# Image for building the application
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["TestSecApplication1/TestSecApplication1.csproj", ""]
-RUN dotnet restore "./TestSecApplication1/TestSecApplication1.csproj"
+
+# Copy the project file to the build context
+COPY ["TestSecApplication1.csproj", "./"]
+
+# Restore dependencies
+RUN dotnet restore "./TestSecApplication1.csproj"
+
+# Copy the rest of the application files
 COPY . .
-WORKDIR "/src/TestSecApplication1"
+
+# Build the application
 RUN dotnet build "./TestSecApplication1.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
+# Publish the application
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
 RUN dotnet publish "./TestSecApplication1.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
+# Final runtime image
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
