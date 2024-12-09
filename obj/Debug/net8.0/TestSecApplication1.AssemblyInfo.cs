@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TestSecApplication1")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+25ac325be3eaeae1d479816db14a4ab6420c5c7b")]
 [assembly: System.Reflection.AssemblyProductAttribute("TestSecApplication1")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TestSecApplication1")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

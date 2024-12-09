@@ -30,3 +30,4 @@ C:\Users\reece\source\repos\TestSecApplication1\TestSecApplication1\obj\Debug\ne
 C:\Users\reece\source\repos\TestSecApplication1\TestSecApplication1\obj\Debug\net8.0\TestSecApplication1.pdb
 C:\Users\reece\source\repos\TestSecApplication1\TestSecApplication1\obj\Debug\net8.0\TestSecApplication1.genruntimeconfig.cache
 C:\Users\reece\source\repos\TestSecApplication1\TestSecApplication1\obj\Debug\net8.0\ref\TestSecApplication1.dll
+C:\Users\reece\source\repos\TestSecApplication1\TestSecApplication1\obj\Debug\net8.0\TestSecApplication1.sourcelink.json

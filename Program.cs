@@ -1,16 +1,23 @@
+using System.Net;
 
 namespace TestSecApplication1
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
+            var publicIp = await GetPublicIpAddressAsync();
+
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            // Configure Kestrel to listen on the public IP and port
+            builder.WebHost.ConfigureKestrel(options =>
+            {
+                options.Listen(IPAddress.Parse(publicIp), 8080); // Replace 8080 with your desired port
+            });
 
+            // Add services to the container.
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
@@ -24,13 +31,25 @@ namespace TestSecApplication1
             }
 
             app.UseHttpsRedirection();
-
             app.UseAuthorization();
-
-
             app.MapControllers();
-
             app.Run();
+        }
+
+        private static async Task<string> GetPublicIpAddressAsync()
+        {
+            using var client = new HttpClient();
+            try
+            {
+                // Fetch the public IP address from an external API
+                var ip = await client.GetStringAsync("https://api.ipify.org");
+                return ip.Trim();
+            }
+            catch
+            {
+                // Default to 0.0.0.0 if public IP cannot be retrieved
+                return "0.0.0.0";
+            }
         }
     }
 }
